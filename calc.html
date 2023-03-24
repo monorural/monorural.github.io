@@ -3,14 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiply by 2</title>
+    <title>Customizable Code Execution</title>
 </head>
 <body>
-    <h1>Multiply by 2</h1>
-    <input type="number" id="inputNumber" placeholder="Enter a number NOW">
-    <button onclick="multiplyByTwo()">Multiply</button>
+    <h1>Customizable Code Execution</h1>
+    <label for="translation_x">Translation X:</label>
+    <input type="text" id="translation_x" value="{x}:(0), {x+6}:(1), {x+12}:(0),">
+    <br>
+    <label for="range_x">Range X (format: ini,fin,step):</label>
+    <input type="text" id="range_x" value="0,36,18">
+    <br>
+    <button onclick="executeCode()">Execute Code</button>
     <p>Result: <span id="result"></span></p>
 
-    <script src="calc.js"> </script>
+    <script>
+        function executeCode() {
+            const translation_x = document.getElementById("translation_x").value;
+            const range_x = document.getElementById("range_x").value;
+            const [ini, fin, step] = range_x.split(",").map(Number);
+            const resultElement = document.getElementById("result");
+
+            let y = "";
+            if (step !== 0) {
+                for (let x = ini; x < fin; x += step) {
+                    const foo = eval("`" + translation_x + "`");
+                    y += foo;
+                }
+                y = y.trim().replace(/,$/, "");
+            }
+
+            resultElement.textContent = y;
+        }
+    </script>
 </body>
 </html>
