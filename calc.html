@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiply by 2</title>
+</head>
+<body>
+    <h1>Multiply by 2</h1>
+    <input type="number" id="inputNumber" placeholder="Enter a number">
+    <button onclick="multiplyByTwo()">Multiply</button>
+    <p>Result: <span id="result"></span></p>
+
+    <script>
+        function multiplyByTwo() {
+            const inputNumber = document.getElementById("inputNumber");
+            const resultElement = document.getElementById("result");
+            const number = parseFloat(inputNumber.value);
+
+            if (!isNaN(number)) {
+                const result = number * 2;
+                resultElement.textContent = result;
+            } else {
+                resultElement.textContent = "Invalid input";
+            }
+        }
+    </script>
+</body>
+</html>
